@@ -11,13 +11,17 @@ class Day2Test {
 
     @Test
     void partOneExample() {
-
         String input = "A Y\n" +
-                "B X\n" +
-                "C Z";
+                       "B X\n" +
+                       "C Z";
         String result = new Day2().part1(input);
         assertThat(result).isEqualTo("15");
     }
-
+    @Test
+    void partOnePaperIsWorthTwo() {
+        String input = "C Y";
+        String result = new Day2().part1(input);
+        assertThat(result).isEqualTo("2");
+    }
 
 }

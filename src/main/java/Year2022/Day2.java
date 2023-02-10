@@ -12,24 +12,26 @@ public class Day2 implements Day {
     */
 
     /* Part2:
-    Y = lose; Y = draw; Z = win
+    X = lose; Y = draw; Z = win
      */
-        Move rock = new Move(1, "Rock", "Scissors");
-        Move paper = new Move(2, "Paper", "Rock");
-        Move scissors = new Move(3, "Scissors", "Paper");
+
+    Map <String, Move> moves = Map.of(
+            "Rock", new Move(1, "Scissors"),
+            "Paper", new Move(2, "Rock"),
+            "Scissors", new Move(3, "Paper"));
 
     Map<String, Move> player1MoveLetters = Map.of(
-            "A", rock,
-            "B", paper,
-            "C", scissors
+            "A", moves.get("Rock"),
+            "B", moves.get("Paper"),
+            "C", moves.get("Scissors")
     );
 
     public String part1(String input) {
 
         Map<String, Move> player2MoveLetters = Map.of(
-                "X", rock,
-                "Y", paper,
-                "Z", scissors
+                "X", moves.get("Rock"),
+                "Y", moves.get("Paper"),
+                "Z", moves.get("Scissors")
         );
 
         int count = 0;
@@ -42,7 +44,7 @@ public class Day2 implements Day {
 
             if (player1Move.equals(player2Move)) {
                 count += 3;
-            } else if (player2Move.beats().equals(player1Move.name())) {
+            } else if (moves.get(player2Move.beats()).equals(player1Move)) {
                 count += 6;
             }
             count += player2Move.score;
@@ -51,13 +53,25 @@ public class Day2 implements Day {
     }
 
     public String part2(String input) {
-        return "";
+        int count = 0;
+        String[] games = input.split("\n");
+        for (String game : games) {
+            Move player1Move = player1MoveLetters.get(moveLetterForPlayer(1, game));
+
+            // if lose - player2 move is player1 beats transformed into a Move
+            // if draw - player2 Move is a player1 Move - same
+            // if win - player2 Move is a player2
+            Move player2Move = moves.get(player1Move.beats());
+            count += player2Move.score();
+        }
+
+        return Integer.toString(count);
     }
 
     private String moveLetterForPlayer(int playerNumber, String game) {
-        return game.split(" ")[playerNumber-1];
+        return game.split(" ")[playerNumber - 1];
     }
 
-    private record Move(int score, String name, String beats) {
+    private record Move(int score, String beats) {
     }
 }

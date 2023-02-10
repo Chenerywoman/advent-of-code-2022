@@ -57,9 +57,9 @@ public class Day2 implements Day {
     }
 
     private boolean playerTwoWins(Move player1Move, Move player2Move) {
-        return player2Move.name.equals("Rock") && player1Move.name.equals("Scissors") ||
-                player2Move.name.equals("Paper") && player1Move.name.equals("Rock") ||
-                player2Move.name.equals("Scissors") && player1Move.name.equals("Paper");
+        return player2Move.name().equals("Rock") && player1Move.name().equals("Scissors") ||
+                player2Move.name().equals("Paper") && player1Move.name().equals("Rock") ||
+                player2Move.name().equals("Scissors") && player1Move.name().equals("Paper");
     }
 
     public String part2(String input) {

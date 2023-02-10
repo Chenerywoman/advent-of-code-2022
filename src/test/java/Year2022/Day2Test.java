@@ -24,4 +24,6 @@ class Day2Test {
         assertThat(result).isEqualTo("2");
     }
 
+    //
+
 }

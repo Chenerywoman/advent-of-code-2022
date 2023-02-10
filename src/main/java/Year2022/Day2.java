@@ -66,23 +66,6 @@ public class Day2 implements Day {
         return "";
     }
 
-    private class Move {
-        public final int score;
-        public final String name;
-
-        public Move(int score, String name) {
-            this.score = score;
-            this.name = name;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            return reflectionEquals(this, o);
-        }
-
-        @Override
-        public int hashCode() {
-            return reflectionHashCode(this);
-        }
+    private record Move(int score, String name) {
     }
 }

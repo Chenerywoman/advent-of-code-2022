@@ -44,4 +44,43 @@ class Day2Test {
         assertThat(result).isEqualTo("2");
     }
 
+    @Test
+    void partTwoDrawToPaper() {
+        String input = "B Y";
+        String result = new Day2().part2(input);
+        assertThat(result).isEqualTo("5");
+    }
+    @Test
+    void partTwoDrawToRock() {
+        String input = "A Y";
+        String result = new Day2().part2(input);
+        assertThat(result).isEqualTo("4");
+    }
+    @Test
+    void partTwoDrawToScissors() {
+        String input = "C Y";
+        String result = new Day2().part2(input);
+        assertThat(result).isEqualTo("6");
+    }
+    @Test
+    void partTwoWinToPaper() {
+        String input = "B Z";
+        String result = new Day2().part2(input);
+        assertThat(result).isEqualTo("9");
+    }
+    @Test
+    void partTwoWinToRock() {
+        String input = "A Z";
+        String result = new Day2().part2(input);
+        assertThat(result).isEqualTo("8");
+    }
+    @Test
+    void partTwoWinToScissors() {
+        String input = "C Z";
+        String result = new Day2().part2(input);
+        assertThat(result).isEqualTo("7");
+    }
+
+
+
 }

@@ -16,9 +16,9 @@ public class Day2 implements Day {
      */
 
     Map <String, Move> moves = Map.of(
-            "Rock", new Move(1, "Scissors"),
-            "Paper", new Move(2, "Rock"),
-            "Scissors", new Move(3, "Paper"));
+            "Rock", new Move(1, "Scissors", "Paper"),
+            "Paper", new Move(2, "Rock", "Scissors"),
+            "Scissors", new Move(3, "Paper", "Rock"));
 
     Map<String, Move> player1MoveLetters = Map.of(
             "A", moves.get("Rock"),
@@ -57,11 +57,22 @@ public class Day2 implements Day {
         String[] games = input.split("\n");
         for (String game : games) {
             Move player1Move = player1MoveLetters.get(moveLetterForPlayer(1, game));
+            String requiredOutcomeLetter = moveLetterForPlayer(2, game);
+            Move player2Move;
 
             // if lose - player2 move is player1 beats transformed into a Move
+            if (requiredOutcomeLetter.equals("X")) {
+                player2Move = moves.get(player1Move.beats());
+            } else if (requiredOutcomeLetter.equals("Y")) {
             // if draw - player2 Move is a player1 Move - same
-            // if win - player2 Move is a player2
-            Move player2Move = moves.get(player1Move.beats());
+                player2Move = player1Move;
+                count+= 3;
+            } else {
+                // win here
+                player2Move = moves.get(player1Move.losesTo());
+                count+= 6;
+            }
+
             count += player2Move.score();
         }
 
@@ -72,6 +83,6 @@ public class Day2 implements Day {
         return game.split(" ")[playerNumber - 1];
     }
 
-    private record Move(int score, String beats) {
+    private record Move(int score, String beats, String losesTo) {
     }
 }

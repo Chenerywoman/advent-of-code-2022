@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.UncheckedIOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 // Borrowed from https://github.com/dave-burke/advent-of-code-java-starter/blob/master/src/main/java/aoc/App.java
@@ -17,6 +18,7 @@ public class App {
         DAYS = new HashMap<>();
         DAYS.put(1, new Day1());
         DAYS.put(2, new Day2());
+        DAYS.put(3, new Day3());
     }
 
     private static String loadInput(int day){
@@ -26,7 +28,7 @@ public class App {
         }
         String fileName = "day" + paddedDay + ".txt";
 
-        try(BufferedReader r = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(fileName)))) {
+        try(BufferedReader r = new BufferedReader(new InputStreamReader(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(fileName))))) {
             return r.lines().collect(Collectors.joining("\n"));
         } catch(NullPointerException npe) {
             throw new IllegalArgumentException("Can’t find data for day using filename: " + fileName + ". Did you forget to put the file in the resources directory?", npe);

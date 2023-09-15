@@ -2,15 +2,27 @@ package Year2022;
 
 import java.util.Optional;
 
-public class Day3 {
+public class Day3 implements Day{
     public String part1(String input) {
-        int splitIndex = input.length() / 2;
-        String partOne = input.substring(0, splitIndex);
-        String partTwo = input.substring(splitIndex);
+        int totalPriorities = 0;
+        String[] rucksacks = input.split("\n");
 
-        Optional<Character> potentialRepeatedCharacter = findOverlap(partOne, partTwo);
+        for (String rucksack : rucksacks) {
+            int splitIndex = rucksack.length() / 2;
+            String partOne = rucksack.substring(0, splitIndex);
+            String partTwo = rucksack.substring(splitIndex);
 
-        return String.valueOf(priority(potentialRepeatedCharacter.orElseThrow()));
+            Optional<Character> potentialRepeatedCharacter = findOverlap(partOne, partTwo);
+
+            totalPriorities += priority(potentialRepeatedCharacter.orElseThrow());
+        }
+
+        return String.valueOf(totalPriorities);
+    }
+
+    @Override
+    public String part2(String input) {
+        return null;
     }
 
     private static Optional<Character> findOverlap(String partOne, String partTwo) {

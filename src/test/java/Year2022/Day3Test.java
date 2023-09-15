@@ -1,6 +1,5 @@
 package Year2022;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,29 +13,12 @@ public class Day3Test {
         assertThat(result).isEqualTo("1");
     }
 
-    @Disabled
     @Test
-    void partOneExample() {
-        String input = """
-                vJrwpWtwJgWrhcsFMMfFFhFp
-                jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-                PmmdzqPrVvPwwTWBwg
-                wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-                ttgJtRGJQctTZtZT
-                CrZsJsPPZsGzwwsLwLmpwMDw""";
-
-        String result = new Day3().part1(input);
-        assertThat(result).isEqualTo("157");
-
-    }
-    @Test
-    @Disabled
     void partOneTwoRucksacksEachWithTwoAs() {
         String input = "aa\naa";
         String result = new Day3().part1(input );
         assertThat(result).isEqualTo("2");
     }
-
     @Test
     void partOneSingleRucksackTwoAsOneBOneC() {
         String input = "abac";
@@ -70,5 +52,19 @@ public class Day3Test {
         String input = "baca";
         String result = new Day3().part1(input);
         assertThat(result).isEqualTo("1");
+    }
+
+    @Test
+    void partOneExample() {
+        String input = """
+                vJrwpWtwJgWrhcsFMMfFFhFp
+                jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+                PmmdzqPrVvPwwTWBwg
+                wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+                ttgJtRGJQctTZtZT
+                CrZsJsPPZsGzwwsLwLmpwMDw""";
+
+        String result = new Day3().part1(input);
+        assertThat(result).isEqualTo("157");
     }
 }

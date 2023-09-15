@@ -7,6 +7,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day3Test {
 
+    @Test
+    void partOneSingleRucksackTwoAs() {
+        String input = "aa";
+        String result = new Day3().part1(input );
+        assertThat(result).isEqualTo("1");
+    }
+
     @Disabled
     @Test
     void partOneExample() {
@@ -21,13 +28,6 @@ public class Day3Test {
         String result = new Day3().part1(input);
         assertThat(result).isEqualTo("157");
 
-    }
-
-    @Test
-    void partOneSingleRucksackTwoAs() {
-        String input = "aa";
-        String result = new Day3().part1(input );
-        assertThat(result).isEqualTo("1");
     }
     @Test
     @Disabled
@@ -63,5 +63,12 @@ public class Day3Test {
         String input = "AA";
         String result = new Day3().part1(input);
         assertThat(result).isEqualTo("27");
+    }
+
+    @Test
+    void partOneSingleRucksackMultipleItemsEachSide() {
+        String input = "baca";
+        String result = new Day3().part1(input);
+        assertThat(result).isEqualTo("1");
     }
 }

@@ -1,8 +1,8 @@
 package Year2022;
 
-import java.util.Optional;
+import java.util.*;
 
-public class Day3 implements Day{
+public class Day3 implements Day {
     public String part1(String input) {
         int totalPriorities = 0;
         String[] rucksacks = input.split("\n");
@@ -26,14 +26,13 @@ public class Day3 implements Day{
     }
 
     private static Optional<Character> findOverlap(String partOne, String partTwo) {
-        Optional<Character> potentialRepeatedCharacter = Optional.empty();
+        Character[] partOneChars = partOne.chars().mapToObj(i -> (char) i).toArray(Character[]::new);
+        Set<Character> partOneSet = new HashSet<>(Arrays.asList(partOneChars));
+        Character[] partTwoChars = partTwo.chars().mapToObj(i -> (char) i).toArray(Character[]::new);
+        Set<Character> partTwoSet = new HashSet<>(Arrays.asList(partTwoChars));
 
-        for (char letter : partOne.toCharArray()) {
-            if (partTwo.contains(String.valueOf(letter))) {
-                potentialRepeatedCharacter = Optional.of(letter);
-            }
-        }
-        return potentialRepeatedCharacter;
+        partOneSet.retainAll(partTwoSet);
+        return Optional.of(partOneSet.toArray(new Character[]{})[0]);
     }
 
     private int offsetOfCharacter(char to, char from) {

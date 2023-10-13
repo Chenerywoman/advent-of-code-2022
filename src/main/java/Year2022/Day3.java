@@ -26,13 +26,16 @@ public class Day3 implements Day {
     }
 
     private static Optional<Character> findOverlap(String partOne, String partTwo) {
-        Character[] partOneChars = partOne.chars().mapToObj(i -> (char) i).toArray(Character[]::new);
-        Set<Character> partOneSet = new HashSet<>(Arrays.asList(partOneChars));
-        Character[] partTwoChars = partTwo.chars().mapToObj(i -> (char) i).toArray(Character[]::new);
-        Set<Character> partTwoSet = new HashSet<>(Arrays.asList(partTwoChars));
+        Set<Character> partOneSet = setOfCharacters(partOne);
+        Set<Character> partTwoSet = setOfCharacters(partTwo);
 
         partOneSet.retainAll(partTwoSet);
         return Optional.of(partOneSet.toArray(new Character[]{})[0]);
+    }
+
+    private static Set<Character> setOfCharacters(String characters) {
+        Character[] characterArray = characters.chars().mapToObj(i -> (char) i).toArray(Character[]::new);
+        return new HashSet<>(Arrays.asList(characterArray));
     }
 
     private int offsetOfCharacter(char to, char from) {

@@ -2,17 +2,12 @@ package Year2022;
 
 import java.util.*;
 
-public class Day3 extends Day {
+public class Day3 implements Day {
 
-    static {
-        currentDay = new Day3();
-    }
+    public static final int PRIORITY_OF_LOWER_A = 1;
+    public static final int PRIORITY_OF_UPPER_A = 27;
 
-    public Day3() {
-        super(3);
-    }
-    public String part1(List<String> inputLines) {
-        String input = String.join("\n", inputLines);
+    public String part1(String input) {
         int totalPriorities = 0;
         String[] rucksacks = input.split("\n");
 
@@ -21,41 +16,41 @@ public class Day3 extends Day {
             String partOne = rucksack.substring(0, splitIndex);
             String partTwo = rucksack.substring(splitIndex);
 
-            Optional<Character> potentialRepeatedCharacter = findOverlap(partOne, partTwo);
+            String potentialRepeatedCharacter = findOverlap(partOne, partTwo);
 
-            totalPriorities += priority(potentialRepeatedCharacter.orElseThrow());
+            totalPriorities += priority(potentialRepeatedCharacter);
         }
 
         return String.valueOf(totalPriorities);
     }
 
     @Override
-    public String part2(List<String> input) {
+    public String part2(String input) {
         return null;
     }
 
-    private static Optional<Character> findOverlap(String partOne, String partTwo) {
-        Set<Character> partOneSet = setOfCharacters(partOne);
-        Set<Character> partTwoSet = setOfCharacters(partTwo);
+    private static String findOverlap(String partOne, String partTwo) {
+        Set<String> partOneSet = setOfStrings(partOne);
+        Set<String> partTwoSet = setOfStrings(partTwo);
 
         partOneSet.retainAll(partTwoSet);
-        return Optional.of(partOneSet.toArray(new Character[]{})[0]);
+        return String.join("", partOneSet);
     }
 
-    private static Set<Character> setOfCharacters(String characters) {
-        Character[] characterArray = characters.chars().mapToObj(i -> (char) i).toArray(Character[]::new);
-        return new HashSet<>(Arrays.asList(characterArray));
+    private static Set<String> setOfStrings(String characters) {
+        return new HashSet<>(Arrays.asList(characters.split("")));
     }
 
     private int offsetOfCharacter(char to, char from) {
         return to - from;
     }
 
-    private int priority(char repeatedCharacter) {
+    private int priority(String repeatedCharacterString) {
+        char repeatedCharacter = repeatedCharacterString.charAt(0);
         if (Character.isLowerCase(repeatedCharacter)) {
-            return 1 + offsetOfCharacter(repeatedCharacter, 'a');
+            return PRIORITY_OF_LOWER_A + offsetOfCharacter(repeatedCharacter, 'a');
         } else {
-            return 27 + offsetOfCharacter(repeatedCharacter, 'A');
+            return PRIORITY_OF_UPPER_A + offsetOfCharacter(repeatedCharacter, 'A');
         }
     }
 }

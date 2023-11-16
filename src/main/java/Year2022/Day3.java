@@ -1,6 +1,9 @@
 package Year2022;
 
+import java.sql.SQLOutput;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Day3 implements Day {
 
@@ -26,6 +29,13 @@ public class Day3 implements Day {
 
     @Override
     public String part2(String input) {
+        Pattern threeLinePattern = Pattern.compile("([a-z]+)\\n([a-z]+)\\n([a-z]+)\\n");
+        Matcher matcher = threeLinePattern.matcher(input);
+        while (matcher.find()) {
+            System.out.println(matcher.group(1));
+            System.out.println(matcher.group(2));
+            System.out.println(matcher.group(3));
+        }
         return null;
     }
 

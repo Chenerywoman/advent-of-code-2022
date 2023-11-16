@@ -68,4 +68,30 @@ public class Day3Test {
         String result = new Day3().part1(getList(input));
         assertThat(result).isEqualTo("157");
     }
+
+    @Test
+    void partTwoOneGroupOfThreeRucksacks() {
+        String input = """
+                vJrwpWtwJgWrhcsFMMfFFhFp
+                jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+                PmmdzqPrVvPwwTWBwg""";
+
+        String result = new Day3().part2(input);
+        assertThat(result).isEqualTo("18");
+    }
+
+    @Test
+    void partTwoTwoGroupsOfThreeRucksacks() {
+        String input = """
+                vJrwpWtwJgWrhcsFMMfFFhFp
+                jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+                PmmdzqPrVvPwwTWBwg
+                wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+                ttgJtRGJQctTZtZT
+                CrZsJsPPZsGzwwsLwLmpwMDw""";
+
+        String result = new Day3().part2(input);
+        assertThat(result).isEqualTo("70");
+    }
+
 }

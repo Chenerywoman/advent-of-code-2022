@@ -5,15 +5,24 @@ import java.util.List;
 
 import static java.util.Collections.reverseOrder;
 
-public class Day1 implements Day {
+public class Day1 extends Day {
 
-    public String part1(String testString) {
-        return descendingElves(testString).get(0).toString();
+    static {
+        currentDay = new Day1();
+    }
+    public Day1() {
+        super(1);
     }
 
-    public String part2(String testString) {
+    public String part1(List<String> inputLines) {
+        String input = String.join("\n", inputLines);
+        return descendingElves(input).get(0).toString();
+    }
 
-        List<Integer> elvesCalories = descendingElves(testString);
+    public String part2(List<String> inputLines) {
+        String input = String.join("\n", inputLines);
+
+        List<Integer> elvesCalories = descendingElves(input);
 
         List<Integer> greediestThreeElves = elvesCalories.subList(0, 3);
         return greediestThreeElves.stream().reduce(Integer::sum).orElseThrow(() -> new RuntimeException("Where is the input?")).toString();

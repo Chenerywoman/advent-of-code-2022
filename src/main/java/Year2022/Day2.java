@@ -1,8 +1,17 @@
 package Year2022;
 
+import java.util.List;
 import java.util.Map;
 
-public class Day2 implements Day {
+public class Day2 extends Day {
+    
+    static {
+        currentDay = new Day2();
+    }
+    public Day2() {
+        super(2);
+    }
+
 
     /* Part1: total score is the sum of your scores for each round.
     The score for a single round is the score for the shape you selected
@@ -26,7 +35,8 @@ public class Day2 implements Day {
             "C", moves.get("Scissors")
     );
 
-    public String part1(String input) {
+    public String part1(List<String> inputLines) {
+        String input = String.join("\n", inputLines);
 
         Map<String, Move> player2MoveLetters = Map.of(
                 "X", moves.get("Rock"),
@@ -52,7 +62,8 @@ public class Day2 implements Day {
         return Integer.toString(count);
     }
 
-    public String part2(String input) {
+    public String part2(List<String> inputLines) {
+        String input = String.join("\n", inputLines);
         int count = 0;
         String[] games = input.split("\n");
         for (String game : games) {

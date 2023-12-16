@@ -2,8 +2,17 @@ package Year2022;
 
 import java.util.*;
 
-public class Day3 implements Day {
-    public String part1(String input) {
+public class Day3 extends Day {
+
+    static {
+        currentDay = new Day3();
+    }
+
+    public Day3() {
+        super(3);
+    }
+    public String part1(List<String> inputLines) {
+        String input = String.join("\n", inputLines);
         int totalPriorities = 0;
         String[] rucksacks = input.split("\n");
 
@@ -21,7 +30,7 @@ public class Day3 implements Day {
     }
 
     @Override
-    public String part2(String input) {
+    public String part2(List<String> input) {
         return null;
     }
 

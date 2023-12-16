@@ -5,6 +5,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
@@ -17,7 +19,7 @@ class Day1Test {
         String testString = "1";
 
         //when
-        String calorieCount = new Day1().part1(testString);
+        String calorieCount = new Day1().part1(getList(testString));
 
         //then
         assertThat(calorieCount).isEqualTo("1");
@@ -29,7 +31,7 @@ class Day1Test {
         String testString = "1\n2\n3\n";
 
         //when
-        String calorieCount = new Day1().part1(testString);
+        String calorieCount = new Day1().part1(getList(testString));
 
         //then
         assertThat(calorieCount).isEqualTo("6");
@@ -40,10 +42,14 @@ class Day1Test {
     void blocksOfMultipleNumbers(String numbers, String greediest) {
         //given
         //when
-        String calorieCount = new Day1().part1(numbers);
+        String calorieCount = new Day1().part1(getList(numbers));
 
         //then
         assertThat(calorieCount).isEqualTo(greediest);
+    }
+
+    public static List<String> getList(String numbers) {
+        return Arrays.asList(numbers.split("\n"));
     }
 
     public static Stream<Arguments> numberBlockgenerator() {
@@ -55,7 +61,7 @@ class Day1Test {
 
     @Test
     void threeGreediestElves() {
-        assertThat(new Day1().part2(
+        assertThat(new Day1().part2(getList(
                 // this is a text block!
                 """
                         1000
@@ -71,6 +77,6 @@ class Day1Test {
                         8000
                         9000
 
-                        10000""")).isEqualTo("45000");
+                        10000"""))).isEqualTo("45000");
     }
 }

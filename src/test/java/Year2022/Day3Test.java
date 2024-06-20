@@ -2,6 +2,8 @@ package Year2022;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static Year2022.Day1Test.getList;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -71,10 +73,11 @@ public class Day3Test {
 
     @Test
     void partTwoOneGroupOfThreeRucksacks() {
-        String input = """
-                vJrwpWtwJgWrhcsFMMfFFhFp
-                jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-                PmmdzqPrVvPwwTWBwg""";
+        List<String> input = List.of(
+                "vJrwpWtwJgWrhcsFMMfFFhFp",
+                "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+                "PmmdzqPrVvPwwTWBwg"
+        );
 
         String result = new Day3().part2(input);
         assertThat(result).isEqualTo("18");
@@ -82,13 +85,14 @@ public class Day3Test {
 
     @Test
     void partTwoTwoGroupsOfThreeRucksacks() {
-        String input = """
-                vJrwpWtwJgWrhcsFMMfFFhFp
-                jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-                PmmdzqPrVvPwwTWBwg
-                wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-                ttgJtRGJQctTZtZT
-                CrZsJsPPZsGzwwsLwLmpwMDw""";
+        List<String> input = List.of(
+                "vJrwpWtwJgWrhcsFMMfFFhFp",
+                "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+                "PmmdzqPrVvPwwTWBwg",
+                "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+                "ttgJtRGJQctTZtZT",
+                "CrZsJsPPZsGzwwsLwLmpwMDw"
+        );
 
         String result = new Day3().part2(input);
         assertThat(result).isEqualTo("70");

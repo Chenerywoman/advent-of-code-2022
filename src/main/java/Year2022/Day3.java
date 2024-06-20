@@ -5,14 +5,19 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day3 implements Day {
+public class Day3 extends Day {
 
     public static final int PRIORITY_OF_LOWER_A = 1;
     public static final int PRIORITY_OF_UPPER_A = 27;
+    static {
+        currentDay = new Day3();
+    }
+    public Day3() {
+        super(3);
+    }
 
-    public String part1(String input) {
+    public String part1(List<String> rucksacks) {
         int totalPriorities = 0;
-        String[] rucksacks = input.split("\n");
 
         for (String rucksack : rucksacks) {
             int splitIndex = rucksack.length() / 2;
@@ -28,9 +33,10 @@ public class Day3 implements Day {
     }
 
     @Override
-    public String part2(String input) {
+    public String part2(List<String> input) {
         Pattern threeLinePattern = Pattern.compile("([a-z]+)\\n([a-z]+)\\n([a-z]+)\\n");
-        Matcher matcher = threeLinePattern.matcher(input);
+        String rucksacks = String.join("\n",input);
+        Matcher matcher = threeLinePattern.matcher(rucksacks);
         while (matcher.find()) {
             System.out.println(matcher.group(1));
             System.out.println(matcher.group(2));
